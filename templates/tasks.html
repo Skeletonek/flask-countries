@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="my-3">Wszystkie zadania</h2>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Dodaj zadanie</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/dodaj-zadanie" method="post">
+                <div class="mb-3">
+                  <label for="task-name" class="form-label">Nazwa</label>
+                  <input required name="tytul" type="text" class="form-control" id="task-name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="task-category" class="form-label">Kategoria</label>
+                  <select name="kategoria" id="task-category" required class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <!-- <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div>
+    <table class="table table-striped table-hover my-3">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Kategoria</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for task in tasks_list %}
+            <tr>
+                <td>{{task.title}}</td>
+                <td>{{task.category}}</td>
+                <td>
+                    <form action="/usun-zadanie" method="post">
+                        <!-- <input type="hidden" name="id" value="{{task._id}}">
+                        <button type="submit" class="btn btn-danger">Usuń</button> -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#{{task._id}}">
+                            Usuń
+                        </button>
+                        
+                        <div class="modal fade" id="{{task._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Uwaga</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                    <div class="modal-body">
+                                    Czy na pewno chcesz usunąć zadanie {{task.title}}?
+                                    <input type="hidden" name="id" value="{{task._id}}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                                    <button type="submit" class="btn btn-danger">Potwierdź usunięcie</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

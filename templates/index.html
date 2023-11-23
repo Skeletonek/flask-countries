@@ -25,5 +25,28 @@
 <p>Odmowa dostępu</p>
 {% endif %}
 
-<button class="btn btn-primary">Kup teraz</button>  
+<form action="" method="get">
+    <div class="input-group my-2" style="max-width: 30rem;">
+        <label for="imie" class="input-group-text">Imię</label>
+        <input id="imie" name="imie" class="form-control" required type="text" placeholder="Podaj swoję imię">
+    </div>
+    <div class="input-group my-2" style="max-width: 30rem;">
+        <label for="password" class="input-group-text">Hasło</label>
+        <input id="password" class="form-control" required type="password" minlength="7" placeholder="Podaj hasło">        
+    </div>
+    <button class="btn btn-primary" type="submit">Wyślij</button> 
+</form>
+
+<h2>Select Form</h2>
+
+<form action="">
+    <div>
+        <select class="form-select" name="wojewodztwo">
+            <option value="slaskie">Śląskie</option>
+            <option value="malopolskie">Małopolskie</option>
+            <option value="mazowieckie">Mazowieckie</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </div>
+</form>
 {% endblock %}
