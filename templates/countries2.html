@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="my-3">Wszystkie kraje</h1>
+<div class="row">
+    {% for country in countries %}
+    <div class="col-lg-3 col-md-4 col-sm-6 my-2">
+        <div class="card h-100">
+            <img src="{{ country['flags']['png']}}" class="card-img-top" alt=" country['flags']['alt']">
+            <div class="card-body">
+                <h5 class="card-title"> {{country['name']['common'] }}</h5>
+                <p class="card-text"> {{country['name']['official']}}</p>
+            </div>
+            <div class="card-footer">
+                <a href="kraje/{{country['cca3']}}" class="btn btn-primary">Szczegóły</a>
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+<!-- <div class="d-flex flex-wrap justify-content-center py-5">
+    {% for country in countries %}
+    <div class="card m-1" style="width: 18rem;">
+        <img src="{{ country['flags']['png']}}" class="card-img-top" alt=" country['flags']['alt']">
+        <div class="card-body">
+          <h5 class="card-title"> {{country['name']['common'] }}</h5>
+          <p class="card-text"> {{country['name']['official']}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    {% endfor %}
+</div> -->

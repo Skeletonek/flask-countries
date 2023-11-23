@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row my-3">
+    <div class="col-lg-3 col-md-4 col-sm-12 mx-3">
+        <button class="btn btn-secondary" onclick="history.back()"><- Powrót</button>
+        <img class="my-4" src="{{ country.flags.png }}" alt=" country['flags']['alt']" style="width: 100%;">
+        <img src="{{ country.coatOfArms.png }}" alt="Godło państwa" style="width: 100%;">
+    </div>
+    <div class="col mx-3">
+        <h1>{{ country.name.common }}</h1>
+        <table class="table table-striped table-hover">
+            <tbody class="table-group-divider">
+                <tr>
+                    <td>Nazwa oficjalna</td>
+                    <td>{{ country.name.official }}</td>
+                </tr>
+                <tr>
+                    <td>Kontynent</td>
+                    <td>{{ country.region }}</td>
+                </tr>
+                <tr>
+                    <td>TLD</td>
+                    <td>
+                        {% for tld in country.tld %}
+                        <div>{{ tld }}</div>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stolice</td>
+                    <td>
+                        {% for capital in country.capital %}
+                        <span>{{ capital }}</span> 
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Języki</td>
+                    <td>
+                        {% for language in country.languages %}
+                        <div>{{ country.languages[language] }}</div> 
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Waluty</td>
+                    <td>
+                        {% for currency in country.currencies %}
+                        <div>{{ country.currencies[currency].name }}</div> 
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Populacja</td>
+                    <td>
+                        <div>{{ country.population }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sąsiednie państwa</td>
+                    <td>
+                        {% for border in borders %}
+                        <a href="{{ border.cca3 }}" class="btn btn-outline-primary">{{border.name.common}}</a>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

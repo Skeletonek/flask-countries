@@ -1,0 +1,4 @@
+1. Utwórz nowy HTML dla routa kraje i wygeneruj dla niego doctype (!)
+2. Zainstaluj bibliotekę requests i pobierz wszystkie kraje z restcountries.com
+3. Przekaż pobrane informacje do template
+4. Za pomocą pętli wyświetl na stronie nazwy krajów i kontynenty na których leżą

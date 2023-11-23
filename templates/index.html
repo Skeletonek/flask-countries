@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hello, {{user}}!</h1>
+<h2>{{city}}</h2>
+
+<div>
+{{ [1,2,3,4]|join("") }}
+</div>
+
+<div>
+{% for user in users %}
+    <em>To jest {{user}}</em>
+{% endfor %}
+</div>
+
+<div>
+    <p>{{ country['name'] }}</p>
+    <p>{{ country.capital }}</p>
+</div>
+    
+{% if is_admin %}
+{# extends "card.html" #}
+{% else %}
+<p>Odmowa dostępu</p>
+{% endif %}
+
+<button class="btn btn-primary">Kup teraz</button>  
+{% endblock %}
